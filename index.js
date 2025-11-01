@@ -1,6 +1,9 @@
+require('dotenv').config();
+
 const express = require("express");
 
 const app = express();
+
 
 const mongoose = require("mongoose");
 
@@ -8,9 +11,11 @@ const Article = require("./models/article.js");
 
 app.use(express.json());
 
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD
+
 mongoose
     .connect(
-        "mongodb+srv://mongo:testpass123@cluster0.yds9dkq.mongodb.net/?appName=Cluster0"
+        `mongodb+srv://mongo:${MONGO_PASSWORD}@cluster0.yds9dkq.mongodb.net/?appName=Cluster0`
     )
     .then(() => {
         console.log("Connected Succeflly...");
